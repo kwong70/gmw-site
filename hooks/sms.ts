@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import Twilio
 const useTwilioSendMessage = (phoneNumber: string, message: string, send: boolean) => {
   useEffect(() => {
-    const accountSid = "AC2d97f07f6af607842b539e9a88fae1bf"
-    const authToken = "8533208b12eae56816cfae9f60b3865c"
-    const twilioPhoneNumber = '+15673391566';
+    const accountSid = ""
+    const authToken = ""
+    const twilioPhoneNumber = '+';
 
     const twilioClient = Twilio(accountSid, authToken);
 
