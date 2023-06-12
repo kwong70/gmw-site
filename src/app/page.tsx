@@ -9,6 +9,22 @@ import image3 from "../../assets/image3.png";
 import Calendar from "@/components/Calendar";
 import Card from "@/components/Card";
 import FormSubmission from "@/components/FormSubmission";
+import useTwilioSendMessage from "../../hooks/sms";
+
+const doctorInfo = [
+  {
+    imageSrc: image1,
+    name: "Samantha Butterfield, M.D.",
+  },
+  {
+    imageSrc: image2,
+    name: "Shane Griffin, M.D.",
+  },
+  {
+    imageSrc: image3,
+    name: "Grant Wong, M.D.",
+  },
+];
 
 export default function Home() {
   const [stage, setStage] = useState(0);
@@ -23,24 +39,19 @@ export default function Home() {
     time: "", 
     day: ""
   })
-  const doctorInfo = [
-    {
-      imageSrc: image1,
-      name: "Samantha Butterfield, M.D.",
-    },
-    {
-      imageSrc: image2,
-      name: "Shane Griffin, M.D.",
-    },
-    {
-      imageSrc: image3,
-      name: "Grant Wong, M.D.",
-    },
-  ];
+  const [send, setSend] = useState(false)
+  const createMessage = () => {
+    return `You have a new appointment on ${message.day}, ${message.time} with ${message.firstName} ${message.lastName}`
+  }
+  const sendMessage = useTwilioSendMessage("3016515397", createMessage(), send)
+  
   const handleSubmission = (firstName: any, lastName: any, email: any, doctorName: any, time: any, day: any) => {
     setMessage({firstName, lastName, email, doctorName, time, day})
+    setSend(true)
     setStage(3);
   };
+
+  
   return (
     <main className="flex min-h-screen flex-col items-center">
       <nav className="flex items-center justify-between flex-wrap w-full px-16 pb-16 pt-8">

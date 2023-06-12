@@ -1,7 +1,7 @@
 import { time } from "console";
 import React from "react";
 
-const Calendar = ({handleClick}) => {
+const Calendar = ({handleClick}: any) => {
   // Generate time slots from 8am to 5pm
   const timeSlots = [
     {
